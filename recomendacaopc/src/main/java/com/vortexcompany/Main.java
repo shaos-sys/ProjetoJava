@@ -37,6 +37,7 @@ public class Main {
              case 3:
              if (l.isEmpty()) {
                System.out.println("A lista está vazia!");
+               m.menuPrincipal();
                opcao = scan.nextInt(); 
 
              } else {
@@ -49,6 +50,7 @@ public class Main {
                 case 4:{
                 if (l.isEmpty()) {
                  System.out.println("Lista vazia! Adicione jogos.");
+                  m.menuPrincipal();
                   opcao = scan.nextInt();  
                 break;   
 
