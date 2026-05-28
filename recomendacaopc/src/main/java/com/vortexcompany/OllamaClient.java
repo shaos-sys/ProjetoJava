@@ -16,22 +16,22 @@
  private final Gson gson = new Gson();
 
      public String gerarRecomendacao(ArrayList<String> lista) throws Exception{
-     String prompt = montarPrompt(lista);
+     String prompt = montarPrompt(lista); // Variável prompt criada, chamando o método montarPrompt com o parâmetro (lista).
 
-     JsonObject body = new JsonObject();
-      body.addProperty("model", MODEL);
-      body.addProperty("prompt", prompt);
-      body.addProperty("stream", false);
+     JsonObject body = new JsonObject(); // Aqui é instanciado a classe JsonObject -> Passa (como se fosse um envelope/caixa).
+      body.addProperty("model", MODEL); // Chave model para json (envelope) para enviar para a IA pelo HttpRequest.
+      body.addProperty("prompt", prompt); // Chave prompt, da variável prompt ja definida, novamente o "envelope" com o prompt.
+      body.addProperty("stream", false); // Diz para a IA não transmitir a resposta aos pouco, em cadeia, e sim esperar ate a resposta estar completa.
 
      HttpClient client = HttpClient.newHttpClient();
      HttpRequest request = HttpRequest.newBuilder()
         .uri(URI.create(URL_OLLAMA))
         .header("Content-Type", "application/json")
-        .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(body)))
+        .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(body))) 
         .build();
-     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString()); // Envia e guarda a resposta em uma String. 
 
-     JsonObject resposta = gson.fromJson(response.body(), JsonObject.class); 
+     JsonObject resposta = gson.fromJson(response.body(), JsonObject.class); // Response é a variável que tem a resposta guardada, o JsonObject é a classe do GSON, o método gson.fromJson converte a resposta de json para objeto java.
       return resposta.get("response").getAsString();
 
      }
@@ -41,6 +41,7 @@
        sb.append("Você deve fazer recomendação de PC's gamer com base na lista\n\n");
        sb.append("Os jogos selecionados pelo usuário são:\n\n");
 
+        // Aqui a IA passa e lê a lista. 
         for (int i = 0; i < lista.size(); i++){
         sb.append(i + 1).append(". ").append(lista.get(i)).append("\n");
         }
