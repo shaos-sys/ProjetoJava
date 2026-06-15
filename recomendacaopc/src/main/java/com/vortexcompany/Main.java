@@ -19,12 +19,12 @@ public class Main {
          opcao = scan.nextInt();
          scan.nextLine();
 
-       while (opcao != 5) {
+       while (opcao != 5) { 
          switch (opcao) {
 
              case 1:
              lista01.setAdicionarJogos(scan);
-              m.menuPrincipal();
+               m.menuPrincipal();
                opcao = scan.nextInt();               
              break;
 
@@ -63,8 +63,8 @@ public class Main {
               
 
                 } catch(Exception e){
-                 System.err.println("Erro ao conectar com Omalla.");
-                 System.err.println("Certifique-se que a conexação com Omalla 'omalla serve' está rodando.");
+                 System.err.println("Erro ao conectar com Ollama.");
+                 System.err.println("Certifique-se que a conexação com Ollama 'Ollama serve' está rodando.");
                 }
 
                 m.menuPrincipal();
