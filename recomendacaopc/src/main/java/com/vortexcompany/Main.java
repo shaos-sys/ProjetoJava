@@ -9,6 +9,7 @@ public class Main {
      ArrayList<String> l = new ArrayList<>();
     
      ListaJogos lista01 = new ListaJogos();
+     SpecPc listaSpec01 = new SpecPc();
      OllamaClient ollama = new OllamaClient();
      Menu m = new Menu();
      
@@ -19,7 +20,7 @@ public class Main {
         opcao = scan.nextInt();
         scan.nextLine();
 
-       while (opcao != 5) { 
+       while (opcao != 8) { 
          switch (opcao) {
 
              case 1:
@@ -72,8 +73,18 @@ public class Main {
                 break;
                 }
 
+             case 5:
+             listaSpec01.setAdicionarSpec(scan);
+             m.menuPrincipal();
+             opcao = scan.nextInt();
+
+             case 6:
+             listaSpec01.exibirListaPC();
+             m.menuPrincipal();
+             opcao = scan.nextInt();  
+
              default:
-             if (opcao >= 6) {
+             if (opcao >= 9) {
              System.out.println("Opção inválida!");
               m.menuPrincipal();
               opcao = scan.nextInt(); 
