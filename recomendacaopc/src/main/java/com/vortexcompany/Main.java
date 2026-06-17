@@ -121,9 +121,8 @@ public class Main {
                   System.out.println(avaliacaoPC);
                   
                 } catch (Exception e) {
-                  System.out.println(e);
-                 //System.err.println("Erro ao conectar com Ollama.");
-                 //System.err.println("Certifique-se que a conexação com Ollama 'Ollama serve' está rodando.");                                
+                 System.err.println("Erro ao conectar com Ollama.");
+                 System.err.println("Certifique-se que a conexação com Ollama 'Ollama serve' está rodando.");                                
                 }
 
                 m.menuPrincipal();
