@@ -30,13 +30,15 @@ public class Main {
              case 1:
              lista01.setAdicionarJogos(scan);
               m.menuPrincipal();
-              opcao = scan.nextInt();               
+              opcao = scan.nextInt();   
+              scan.nextLine();            
              break;
 
              case 2:
              lista01.removerJogos(scan);
               m.menuPrincipal();
-              opcao = scan.nextInt();                               
+              opcao = scan.nextInt();    
+              scan.nextLine();                           
              break;  
 
              case 3:
@@ -44,11 +46,13 @@ public class Main {
               System.out.println("A lista está vazia!");
               m.menuPrincipal();
               opcao = scan.nextInt(); 
+              scan.nextLine();
 
              } else {
              lista01.exibirLista();
               m.menuPrincipal();
               opcao = scan.nextInt();
+              scan.nextLine();
              }  
              break;
              
@@ -57,6 +61,7 @@ public class Main {
                 System.out.println("Lista vazia! Adicione jogos.");
                  m.menuPrincipal();
                   opcao = scan.nextInt();  
+                  scan.nextLine();
                 break;   
                 }
 
@@ -73,7 +78,8 @@ public class Main {
                 }
 
                 m.menuPrincipal();
-                opcao = scan.nextInt();              
+                opcao = scan.nextInt();    
+                scan.nextLine();          
                 break;
                 }
 
@@ -81,42 +87,56 @@ public class Main {
              listaSpec01.setAdicionarSpec(scan);
              m.menuPrincipal();
              opcao = scan.nextInt();
+             scan.nextLine();
+             break;
 
              case 6:
+             if (pc.isEmpty()) {
+              System.out.println("A lista está vazia!");
+              m.menuPrincipal();
+              opcao = scan.nextInt(); 
+              scan.nextLine();
+
+             } else {
              listaSpec01.exibirListaPC();
-             m.menuPrincipal();
-             opcao = scan.nextInt();  
+              m.menuPrincipal();
+              opcao = scan.nextInt();
+              scan.nextLine();
+             }  
+             break;
 
                 case 7:{
                  if (pc.isEmpty()){
                 System.out.println("Lista de hardware está vazia!");
                  m.menuPrincipal();
                   opcao = scan.nextInt();
+                  scan.nextLine();
                 break;
                 }  
 
                 System.out.println("Gerando avaliação do PC...");
                  try {
-                  String avaliacaoPC = ollama.montarPromptSPECS(pc, l);
+                  String avaliacaoPC = ollama.gerarTestePC(pc, l);
                   System.out.println("====== AVALIAÇÃO ======");
                   System.out.println(avaliacaoPC);
                   
                 } catch (Exception e) {
-                 System.err.println("Erro ao conectar com Ollama.");
-                 System.err.println("Certifique-se que a conexação com Ollama 'Ollama serve' está rodando.");                                
+                  System.out.println(e);
+                 //System.err.println("Erro ao conectar com Ollama.");
+                 //System.err.println("Certifique-se que a conexação com Ollama 'Ollama serve' está rodando.");                                
                 }
 
                 m.menuPrincipal();
                 opcao = scan.nextInt();
+                scan.nextLine();
                 break;
                 }
                
              default:
-             if (opcao >= 9) {
              System.out.println("Opção inválida!");
               m.menuPrincipal();
-              opcao = scan.nextInt(); 
-             }               
+               opcao = scan.nextInt();  
+               scan.nextLine();          
              break;               
           }         
        }  

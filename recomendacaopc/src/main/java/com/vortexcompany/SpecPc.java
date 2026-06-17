@@ -9,6 +9,7 @@
  public String spec;
 
      public void setAdicionarSpec (Scanner scn){
+
       do {
        System.out.println("Informe suas configurações do PC [Processador, placa de vídeo e memoria RAM] ('N' para voltar)");
        spec = scn.nextLine();

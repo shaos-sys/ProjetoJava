@@ -42,7 +42,7 @@
           JsonObject bdy = new JsonObject();
            bdy.addProperty("model", MODEL);
            bdy.addProperty("prompt", promptSPEC);
-           bdy.addProperty("stram", false);
+           bdy.addProperty("stream", false);
 
           HttpClient cl = HttpClient.newHttpClient();
           HttpRequest rq = HttpRequest.newBuilder()
@@ -98,6 +98,7 @@
                 st.append("Deve-se levar me conta somente os hardwares da lista de hardwares e os jogos da lista de jogos.\n");
                 st.append("Informar se o hardware vai conseguir rodar os jogos bem e flúidos, com as configurações gráficas adequadas para isso.\n");
                 st.append("Ou informar que terá que reduzir os gráficos para rodar os jogos, ou até que não ira rodar bem, se for o caso, e sugerir upgrades\n");
+                st.append("Escrever tudo em português do Brasil\n");
                 return st.toString();
                 }
 
