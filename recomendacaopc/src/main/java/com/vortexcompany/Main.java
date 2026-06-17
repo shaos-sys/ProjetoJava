@@ -6,7 +6,9 @@
 public class Main {
      public static void main(String[] args) {
      Scanner scan = new Scanner(System.in);  
+
      ArrayList<String> l = new ArrayList<>();
+     ArrayList<String> pc = new ArrayList<>();
     
      ListaJogos lista01 = new ListaJogos();
      SpecPc listaSpec01 = new SpecPc();
@@ -14,14 +16,16 @@ public class Main {
      Menu m = new Menu();
      
        int opcao = 0;
-       l = lista01.getLista();
+
+        l = lista01.getLista();
+        pc = listaSpec01.getListaSpec();
        
         m.menuPrincipal();
         opcao = scan.nextInt();
         scan.nextLine();
 
        while (opcao != 8) { 
-         switch (opcao) {
+          switch (opcao) {
 
              case 1:
              lista01.setAdicionarJogos(scan);
@@ -49,13 +53,13 @@ public class Main {
              break;
              
                 case 4:{
-                if (l.isEmpty()) {
+                 if (l.isEmpty()) {
                 System.out.println("Lista vazia! Adicione jogos.");
-                m.menuPrincipal();
-                opcao = scan.nextInt();  
+                 m.menuPrincipal();
+                  opcao = scan.nextInt();  
                 break;   
-
                 }
+
                 System.out.println("Gerando recomendações...");
                  try{
                   String recomendacoes = ollama.gerarRecomendacao(l);
@@ -83,6 +87,30 @@ public class Main {
              m.menuPrincipal();
              opcao = scan.nextInt();  
 
+                case 7:{
+                 if (pc.isEmpty()){
+                System.out.println("Lista de hardware está vazia!");
+                 m.menuPrincipal();
+                  opcao = scan.nextInt();
+                break;
+                }  
+
+                System.out.println("Gerando avaliação do PC...");
+                 try {
+                  String avaliacaoPC = ollama.montarPromptSPECS(pc, l);
+                  System.out.println("====== AVALIAÇÃO ======");
+                  System.out.println(avaliacaoPC);
+                  
+                } catch (Exception e) {
+                 System.err.println("Erro ao conectar com Ollama.");
+                 System.err.println("Certifique-se que a conexação com Ollama 'Ollama serve' está rodando.");                                
+                }
+
+                m.menuPrincipal();
+                opcao = scan.nextInt();
+                break;
+                }
+               
              default:
              if (opcao >= 9) {
              System.out.println("Opção inválida!");
